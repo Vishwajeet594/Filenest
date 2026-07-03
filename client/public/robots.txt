@@ -12,6 +12,6 @@ User-agent: *
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://filenest-2xv2.onrender.com/sitemap.xml
+Sitemap: https://filenest-g40x.onrender.com/sitemap.xml
 Sitemap: https://filenest.app/sitemap.xml
 

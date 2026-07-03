@@ -1,5 +1,5 @@
 // SEO Configuration and metadata for all pages
-export const SITE_URL = import.meta.env.VITE_SITE_URL || "https://filenest.app";
+export const SITE_URL = import.meta.env.VITE_SITE_URL || "https://filenest-g40x.onrender.com";
 export const SITE_NAME = "Filenest";
 export const SITE_DESCRIPTION =
   "Merge, split, compress and convert PDFs. View and convert DOCX, XLSX, CSV, JSON and more — free, fast, and entirely in your browser. No uploads, no sign-up.";

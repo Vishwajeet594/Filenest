@@ -33,7 +33,7 @@ app.get("/sitemap.xml", (req, res) => {
     { slug: "view-markdown" },
   ];
 
-  const siteUrl = process.env.SITE_URL || "https://filenest.app";
+  const siteUrl = process.env.SITE_URL || "https://filenest-g40x.onrender.com";
 
   const baseRoutes = [
     { path: "/", priority: "1.0", changefreq: "daily" },
@@ -71,7 +71,7 @@ app.get("/sitemap.xml", (req, res) => {
 
 // SEO: robots.txt endpoint (serves from static, but fallback)
 app.get("/robots.txt", (req, res) => {
-  const siteUrl = process.env.SITE_URL || "https://filenest.app";
+  const siteUrl = process.env.SITE_URL || "https://filenest-g40x.onrender.com";
   const robots = `User-agent: *
 Allow: /
 Disallow: /api/
