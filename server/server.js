@@ -33,7 +33,10 @@ app.get("/sitemap.xml", (req, res) => {
     { slug: "view-markdown" },
   ];
 
-  const siteUrl = process.env.SITE_URL || "https://filenest-g40x.onrender.com";
+  // Use actual request domain for sitemap URLs
+  const protocol = req.protocol || "https";
+  const host = req.get("host") || "filenest-g40x.onrender.com";
+  const siteUrl = process.env.SITE_URL || `${protocol}://${host}`;
 
   const baseRoutes = [
     { path: "/", priority: "1.0", changefreq: "daily" },
@@ -71,7 +74,11 @@ app.get("/sitemap.xml", (req, res) => {
 
 // SEO: robots.txt endpoint (serves from static, but fallback)
 app.get("/robots.txt", (req, res) => {
-  const siteUrl = process.env.SITE_URL || "https://filenest-g40x.onrender.com";
+  // Use actual request domain
+  const protocol = req.protocol || "https";
+  const host = req.get("host") || "filenest-g40x.onrender.com";
+  const siteUrl = process.env.SITE_URL || `${protocol}://${host}`;
+  
   const robots = `User-agent: *
 Allow: /
 Disallow: /api/
