@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink-50 text-ink-800 font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-semibold text-sm transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 text-white hover:bg-brand-700 shadow-soft;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-ink-700 border border-ink-200 hover:border-brand-300 hover:text-brand-700;
+  }
+  .card {
+    @apply bg-white rounded-xl2 shadow-card border border-ink-100;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+  }
+  .dropzone {
+    @apply flex flex-col items-center justify-center gap-3 rounded-xl2 border-2 border-dashed border-brand-200 bg-brand-50/50 px-6 py-14 text-center transition-colors hover:border-brand-400 hover:bg-brand-50;
+  }
+
+  .rendered-doc {
+    @apply max-h-[70vh] overflow-auto text-sm leading-relaxed text-ink-700;
+  }
+  .rendered-doc h1 {
+    @apply font-display text-2xl font-semibold text-ink-900 mb-3 mt-5;
+  }
+  .rendered-doc h2 {
+    @apply font-display text-xl font-semibold text-ink-900 mb-2 mt-4;
+  }
+  .rendered-doc h3 {
+    @apply font-display text-lg font-semibold text-ink-900 mb-2 mt-3;
+  }
+  .rendered-doc p {
+    @apply mb-3;
+  }
+  .rendered-doc ul {
+    @apply mb-3 list-disc pl-5;
+  }
+  .rendered-doc ol {
+    @apply mb-3 list-decimal pl-5;
+  }
+  .rendered-doc a {
+    @apply text-brand-700 underline;
+  }
+  .rendered-doc table {
+    @apply mb-3 w-full border-collapse text-left text-xs;
+  }
+  .rendered-doc th, .rendered-doc td {
+    @apply border border-ink-100 px-2 py-1;
+  }
+  .rendered-doc code {
+    @apply rounded bg-ink-100 px-1 py-0.5 text-xs;
+  }
+  .rendered-doc img {
+    @apply max-w-full rounded-lg my-3;
+  }
+}
