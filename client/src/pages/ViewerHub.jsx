@@ -1,9 +1,28 @@
 import React from "react";
 import ToolCard from "../components/ToolCard.jsx";
 import { TOOLS } from "../lib/toolsConfig.js";
+import usePageMeta from "../hooks/usePageMeta.js";
+import { useStructuredDataMultiple } from "../hooks/useStructuredData.js";
+import { PAGE_META, getBreadcrumbSchema } from "../lib/seoConfig.js";
 
 export default function ViewerHub() {
   const tools = TOOLS.filter((t) => t.category === "viewer");
+
+  // SEO: Update page meta tags
+  const viewerMeta = PAGE_META["/viewer"];
+  usePageMeta({
+    title: viewerMeta.title,
+    description: viewerMeta.description,
+    keywords: viewerMeta.keywords,
+    canonical: "https://filenest.app/viewer",
+    ogTitle: viewerMeta.title,
+    ogDescription: viewerMeta.description,
+    ogImage: "https://filenest.app/og-image.png",
+  });
+
+  // SEO: Add structured data
+  useStructuredDataMultiple([getBreadcrumbSchema("/viewer")]);
+
   return (
     <div className="mx-auto max-w-6xl px-5 py-14">
       <div className="mb-10 text-center">

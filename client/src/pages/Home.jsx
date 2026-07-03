@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { ShieldCheck, Zap, EyeOff } from "lucide-react";
 import ToolCard from "../components/ToolCard.jsx";
 import { TOOLS, CATEGORY_META } from "../lib/toolsConfig.js";
+import usePageMeta from "../hooks/usePageMeta.js";
+import { useStructuredDataMultiple } from "../hooks/useStructuredData.js";
+import { PAGE_META, ORGANIZATION_SCHEMA, WEB_APPLICATION_SCHEMA, getBreadcrumbSchema } from "../lib/seoConfig.js";
 
 const FILTERS = [
   { key: "all", label: "All" },
@@ -15,6 +18,25 @@ export default function Home() {
   const [filter, setFilter] = useState("all");
   const shown =
     filter === "all" ? TOOLS : TOOLS.filter((t) => t.category === filter);
+
+  // SEO: Update page meta tags
+  const homeMeta = PAGE_META["/"];
+  usePageMeta({
+    title: homeMeta.title,
+    description: homeMeta.description,
+    keywords: homeMeta.keywords,
+    canonical: "https://filenest.app/",
+    ogTitle: homeMeta.title,
+    ogDescription: homeMeta.description,
+    ogImage: "https://filenest.app/og-image.png",
+  });
+
+  // SEO: Add structured data
+  useStructuredDataMultiple([
+    ORGANIZATION_SCHEMA,
+    WEB_APPLICATION_SCHEMA,
+    getBreadcrumbSchema("/"),
+  ]);
 
   return (
     <div>

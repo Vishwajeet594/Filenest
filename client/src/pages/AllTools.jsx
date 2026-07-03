@@ -1,8 +1,26 @@
 import React from "react";
 import ToolCard from "../components/ToolCard.jsx";
 import { TOOLS, CATEGORY_META } from "../lib/toolsConfig.js";
+import usePageMeta from "../hooks/usePageMeta.js";
+import { useStructuredDataMultiple } from "../hooks/useStructuredData.js";
+import { PAGE_META, getBreadcrumbSchema } from "../lib/seoConfig.js";
 
 export default function AllTools() {
+  // SEO: Update page meta tags
+  const toolsMeta = PAGE_META["/tools"];
+  usePageMeta({
+    title: toolsMeta.title,
+    description: toolsMeta.description,
+    keywords: toolsMeta.keywords,
+    canonical: "https://filenest.app/tools",
+    ogTitle: toolsMeta.title,
+    ogDescription: toolsMeta.description,
+    ogImage: "https://filenest.app/og-image.png",
+  });
+
+  // SEO: Add structured data
+  useStructuredDataMultiple([getBreadcrumbSchema("/tools")]);
+
   return (
     <div className="mx-auto max-w-6xl px-5 py-14">
       <div className="mb-10 text-center">

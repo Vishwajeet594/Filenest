@@ -12,11 +12,13 @@ export default function ToolCard({ tool }) {
     <Link
       to={`/tools/${tool.slug}`}
       className="card group flex flex-col gap-4 p-5 transition-transform hover:-translate-y-0.5 hover:shadow-lg"
+      aria-label={`${tool.name}: ${tool.tagline}`}
     >
       <span
         className={`flex h-11 w-11 items-center justify-center rounded-xl ${
           ACCENTS[tool.accent] || ACCENTS.brand
         }`}
+        aria-hidden="true"
       >
         <ToolIcon name={tool.icon} size={20} />
       </span>

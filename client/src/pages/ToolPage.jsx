@@ -3,6 +3,9 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { getToolBySlug, TOOLS } from "../lib/toolsConfig.js";
 import ToolHeader from "../components/ToolHeader.jsx";
 import ToolCard from "../components/ToolCard.jsx";
+import usePageMeta from "../hooks/usePageMeta.js";
+import { useStructuredDataMultiple } from "../hooks/useStructuredData.js";
+import { getToolMeta, getBreadcrumbSchema } from "../lib/seoConfig.js";
 
 import MergePdf from "../components/pdf/MergePdf.jsx";
 import SplitPdf from "../components/pdf/SplitPdf.jsx";
@@ -33,6 +36,22 @@ export default function ToolPage() {
   const tool = getToolBySlug(slug);
 
   if (!tool) return <Navigate to="/tools" replace />;
+
+  // SEO: Get tool-specific meta
+  const toolMeta = getToolMeta(tool.slug, tool.name, tool.description);
+
+  usePageMeta({
+    title: toolMeta.title,
+    description: toolMeta.description,
+    keywords: toolMeta.keywords,
+    canonical: toolMeta.canonical,
+    ogTitle: toolMeta.title,
+    ogDescription: toolMeta.description,
+    ogImage: "https://filenest.app/og-image.png",
+  });
+
+  // SEO: Add structured data with breadcrumbs
+  useStructuredDataMultiple([getBreadcrumbSchema(`/tools/${slug}`, tool.name)]);
 
   let body;
   if (tool.category === "pdf") {

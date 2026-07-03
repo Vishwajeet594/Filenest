@@ -1,6 +1,25 @@
 import React from "react";
+import usePageMeta from "../hooks/usePageMeta.js";
+import { useStructuredDataMultiple } from "../hooks/useStructuredData.js";
+import { PAGE_META, getBreadcrumbSchema } from "../lib/seoConfig.js";
 
 export default function Privacy() {
+  // SEO: Update page meta tags
+  const privacyMeta = PAGE_META["/privacy"];
+  usePageMeta({
+    title: privacyMeta.title,
+    description: privacyMeta.description,
+    keywords: privacyMeta.keywords,
+    canonical: "https://filenest.app/privacy",
+    ogTitle: privacyMeta.title,
+    ogDescription: privacyMeta.description,
+    ogImage: "https://filenest.app/og-image.png",
+    robotsContent: "index, follow",
+  });
+
+  // SEO: Add structured data
+  useStructuredDataMultiple([getBreadcrumbSchema("/privacy")]);
+
   return (
     <div className="mx-auto max-w-2xl px-5 py-16">
       <h1 className="text-3xl font-semibold">Privacy</h1>
